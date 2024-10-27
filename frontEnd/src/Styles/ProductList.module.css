@@ -1,0 +1,45 @@
+/* ProductList.module.css */
+*{
+  padding: 0;
+  margin: 0;
+  background-color: rgb(41, 41, 41);
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten a múltiples filas */
+  justify-content: space-between; /* Espacia los productos */
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.productCard {
+  background-color: white; /* Color de fondo del producto */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  width: 30%; /* Ajusta el ancho según el diseño deseado */
+  margin: 10px; /* Espacio entre los productos */
+  padding: 15px; /* Espacio interno */
+  text-align: center; /* Centrar texto */
+}
+
+.productCard img {
+  border-radius: 5px; /* Bordes redondeados de la imagen */
+  max-width: 100%; /* Mantiene la imagen dentro del rectángulo */
+  height: auto; /* Ajusta la altura automáticamente */
+}
+
+.productButton {
+  background-color: #007bff; /* Color del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin bordes */
+  border-radius: 5px; /* Bordes redondeados del botón */
+  padding: 10px 15px; /* Espaciado interno del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  margin-top: 10px; /* Espacio arriba del botón */
+  transition: background-color 0.3s; /* Transición suave al cambiar de color */
+}
+
+.productButton:hover {
+  background-color: #0056b3; /* Color al pasar el mouse */
+}
