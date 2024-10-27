@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import ProductList from './components/ProductList'
 import ProductForm from './components/ProductForm'
+
+
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 
@@ -27,6 +27,7 @@ function App() {
           <Route path="/" element={<ProductList />} />
           <Route path="/add-product" element={<ProductForm />} />
         </Routes>
+        <FooterComponent />
       </div>
     </Router>
   );
