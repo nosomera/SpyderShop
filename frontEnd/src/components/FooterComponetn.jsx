@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const FooterComponetn = () => {
@@ -15,4 +14,5 @@ const FooterComponetn = () => {
     </footer>
   );
 };
+
 export default FooterComponetn;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../Styles/ProductForm.css'
 
 const ProductForm = () => {
   const [name, setName] = useState("");
@@ -9,6 +10,7 @@ const ProductForm = () => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePath, setImagePath] = useState("");
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null); // Nuevo estado para manejar el mensaje de éxito
 
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]); // Almacena el archivo de imagen
@@ -47,60 +49,71 @@ const ProductForm = () => {
         setImageFile(null);
         setImagePath("");
         setError(null);
+        setSuccess("Producto agregado exitosamente."); // Mensaje de éxito
       } catch (error) {
         console.error(error);
         setError("Error al agregar el producto.");
+        setSuccess(null); // Limpia el mensaje de éxito si hay un error
       }
     } else {
       setError("Por favor selecciona una imagen.");
+      setSuccess(null); // Limpia el mensaje de éxito si hay un error
     }
   };
 
   return (
-    <div>
+    <div id="contenedor">
       <h1>Agregar Producto</h1>
+      
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>} {/* Mensaje de éxito */}
+      
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Nombre</label>
+          <label htmlFor="productName">Nombre</label>
           <input
             type="text"
+            id="productName"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Cantidad</label>
+          <label htmlFor="productCount">Cantidad</label>
           <input
             type="number"
+            id="productCount"
             value={count}
             onChange={(e) => setCount(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Precio</label>
+          <label htmlFor="productPrice">Precio</label>
           <input
             type="number"
+            id="productPrice"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Descripción</label>
+          <label htmlFor="productDescription">Descripción</label>
           <input
             type="text"
+            id="productDescription"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Imagen</label>
+          <label htmlFor="productImage">Imagen</label>
           <input
             type="file"
+            id="productImage"
             accept="image/*" // Solo permite imágenes
             onChange={handleFileChange}
             required

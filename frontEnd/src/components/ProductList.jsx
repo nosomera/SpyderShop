@@ -14,9 +14,8 @@ const ProductList = () => {
 
   return (
     <div>
-    <h1 className={styles.title}>Lista de Productos</h1>
       <div className={styles.productList}>
-        <ul className={styles.productList}>
+        <ul className={styles.productCard}>
           {products.map((product, index) => (
             <li key={index}>
               <h2>{product.name}</h2>
@@ -27,9 +26,14 @@ const ProductList = () => {
                 alt={product.name}
                 style={{ width: "200px", height: "auto" }}
               />
+              <div>
+              <button href='#' className={styles.productButton}>Ver Producto</button>
+              </div>
             </li>
+            
           ))}
         </ul>
+        
       </div>
     </div>
   );

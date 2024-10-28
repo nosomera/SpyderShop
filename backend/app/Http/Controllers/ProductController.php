@@ -49,7 +49,7 @@ class ProductController extends Controller
   public function upload(Request $request)
 {
     $request->validate([
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validación de la imagen
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp', // Validación de la imagen
     ]);
 
     if ($request->file('image')) {

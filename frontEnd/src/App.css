@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 
 .logo {
@@ -39,4 +39,61 @@
 
 .read-the-docs {
   color: #888;
+}/* Footer Styles */
+
+.footer {
+  background-color: #333; /* Fondo oscuro */
+  color: #f0f0f0; /* Texto claro */
+  padding: 20px 0; /* Espaciado vertical */
+  text-align: center; /* Centrar contenido */
+  font-family: 'Arial', sans-serif; /* Tipografía */
+  border-top: 2px solid #444; /* Borde superior */
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil hacia arriba */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* Espacia el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  max-width: 1200px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 0 20px; /* Espaciado lateral */
+  flex-wrap: wrap; /* Permite que el contenido se ajuste en dispositivos pequeños */
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px; /* Tamaño de fuente pequeño */
+}
+
+.footer-links {
+  display: flex;
+  gap: 15px; /* Espacio entre los enlaces */
+}
+
+.footer-links a {
+  color: #f0f0f0; /* Color del texto del enlace */
+  text-decoration: none; /* Sin subrayado */
+  font-size: 14px; /* Tamaño de fuente pequeño */
+  transition: color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+.footer-links a:hover {
+  color: #1e90ff; /* Color al pasar el mouse */
+  transform: translateY(-2px); /* Levanta el enlace al pasar el mouse */
+}
+
+.footer-links a:active {
+  color: #ffa500; /* Color al hacer clic */
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column; /* Apila elementos en dispositivos pequeños */
+    text-align: center;
+  }
+
+  .footer-links {
+    margin-top: 10px; /* Espaciado superior cuando se apilan */
+  }
 }
