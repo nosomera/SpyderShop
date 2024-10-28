@@ -1,0 +1,66 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 60%;
+}
+
+#grid {
+    display: flex;
+    flex-direction: row; /* Asegúrate de que la dirección sea horizontal */
+    gap: 20px; 
+    width: 100%; 
+    align-items: flex-start; /* Alinea el contenido al inicio */
+    gap: 300px;
+}
+
+#image {
+    width: 100%;
+    height: auto;
+    max-width: 300px; /* Ajusta el tamaño máximo de la imagen */
+    border-radius: 8px;
+}
+
+#derecha {
+    display: flex; /* Cambia a flex para alinear los elementos */
+    flex-direction: column; /* Mantén el contenido en columna */
+    justify-content: flex-start; /* Alinea al inicio */
+    margin-left: 20px; /* Espacio entre la imagen y el contenido */
+}
+
+h2 {
+    font-size: 24px;
+    margin: 10px 0;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: #007BFF; /* Color azul para el precio */
+}
+
+label {
+    margin-right: 30px;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #28a745; /* Color verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+}

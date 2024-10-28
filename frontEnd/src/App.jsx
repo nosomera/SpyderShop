@@ -5,7 +5,7 @@ import FooterComponetn from './components/FooterComponetn'
 import styles from "./Styles/ProductList.module.css";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
-
+import Items from './components/Items';
 
 function App() {
 
@@ -34,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ProductList />} />
           <Route path="/add-product" element={<ProductForm />} />
+          <Route path="/product/:id" element={<Items />} />
         </Routes>
         <FooterComponetn />
       </div>

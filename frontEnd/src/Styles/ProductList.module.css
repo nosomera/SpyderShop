@@ -48,12 +48,14 @@ ul {
 
 ul li {
   margin-left: 50px; 
+  font-size: 16px;
 }
 
 ul li a {
   color: #ffffff; /* Color del texto del enlace */
   text-decoration: none; /* Elimina el subrayado del texto */
   transition: color 0.3s, filter 0.3s; /* Transición suave para el color y la sombra */
+  margin-bottom: 20px;
 }
 
 ul li a:hover {
@@ -85,6 +87,7 @@ ul li a:hover {
   padding-bottom: 30px;
   padding-right: 30px;
   text-align: center;
+  margin-bottom: 30px;
 
 }
 

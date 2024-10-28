@@ -59,5 +59,26 @@ class ProductController extends Controller
 
     return response()->json(['message' => 'Error al subir la imagen.'], 500);
 }
+public function show($id)
+{
+    try {
+        // Convierte el ID a ObjectId
+        $objectId = new \MongoDB\BSON\ObjectId($id);
+
+        // Busca el producto en la colección usando el ID
+        $product = $this->collection->findOne(['_id' => $objectId]);
+
+        // Verifica si el producto existe
+        if ($product) {
+            return response()->json($product);
+        } else {
+            return response()->json(['message' => 'Producto no encontrado.'], 404);
+        }
+    } catch (\MongoDB\Driver\Exception\Exception $e) {
+        return response()->json(['message' => 'Error en el servidor.', 'error' => $e->getMessage()], 500);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Error al procesar la solicitud.', 'error' => $e->getMessage()], 500);
+    }
+}
 
 }

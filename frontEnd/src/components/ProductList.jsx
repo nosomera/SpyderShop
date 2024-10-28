@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "../Styles/ProductList.module.css";
+import { useNavigate } from "react-router-dom"; // Asegúrate de importar useNavigate
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate(); // Inicializa useNavigate
 
   useEffect(() => {
     // Hacer una petición GET a la API para obtener la lista de productos
@@ -11,6 +13,13 @@ const ProductList = () => {
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error al cargar los productos:", error));
   }, []);
+
+  const handleViewProduct = (id) => {
+    const stringId = id.$oid; // Accede al campo "$oid" del objeto ID
+    console.log("Product ID:", stringId); // Verifica el ID convertido
+    navigate(`/product/${stringId}`); // Redirige a la página del producto usando su ID como string
+};
+
 
   return (
     <div>
@@ -27,13 +36,16 @@ const ProductList = () => {
                 style={{ width: "200px", height: "auto" }}
               />
               <div>
-              <button href='#' className={styles.productButton}>Ver Producto</button>
+                <button
+                  onClick={() => handleViewProduct(product._id)} 
+                  className={styles.productButton}
+                >
+                  Ver Producto
+                </button>
               </div>
             </li>
-            
           ))}
         </ul>
-        
       </div>
     </div>
   );
