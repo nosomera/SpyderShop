@@ -123,11 +123,98 @@ ul li a:hover {
 }
 
 .verProducto{
-  background-color: rgb(0, 59, 0);
+  background-color: rgb(192, 189, 1);
   display: flex;
   justify-content:center;
   align-items: center;
 }
 .verProducto:hover{
-  background-color: green;
+  background-color: rgb(255, 118, 6);
+}
+table {
+  width: 90%;
+  margin: 20px auto; /* Centra la tabla */
+  border-collapse: collapse; /* Elimina los espacios entre celdas */
+  background-color: #444; /* Fondo de la tabla en un gris oscuro */
+  color: #f2f2f2; /* Color del texto */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra para la tabla */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Recorta cualquier desbordamiento */
+  text-align: center;
+}
+
+table th {
+  background-color: #333; /* Fondo más oscuro para los encabezados */
+  padding: 15px 10px; /* Espaciado interno */
+  text-align: left; /* Alineación del texto */
+  font-size: 16px; /* Tamaño de la fuente */
+  border-bottom: 2px solid #555; /* Línea inferior en los encabezados */
+  text-align: center;
+}
+
+/* Filas de la tabla */
+table tr {
+  text-align: center;
+  transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+/* Filas alternadas */
+table tr:nth-child(even) {
+  background-color: #555; /* Color de fondo alternado */
+}
+
+/* Estilo al pasar el mouse sobre una fila */
+table tr:hover {
+  background-color: #666; /* Fondo al pasar el mouse */
+}
+
+/* Celdas de la tabla */
+table td {
+  padding: 12px 10px; /* Espaciado interno de las celdas */
+  border-bottom: 1px solid #555; /* Línea inferior en las celdas */
+  text-align: center;
+}
+
+/* Botón dentro de la tabla */
+.editButton {
+  background-color: #999b34; /* Color del botón de edición */
+  color: white; /* Color del texto */
+  border: none; /* Sin bordes */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 8px 12px; /* Espaciado interno del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s; /* Transición suave al cambiar de color */
+}
+
+/* Estilo al pasar el mouse sobre el botón */
+.editButton:hover {
+  background-color: #940e04; /* Color al pasar el mouse */
+}
+
+/* Estilo del botón "Añadir Producto" */
+.productButton {
+  display: inline-block;
+  margin: 20px 0; /* Espaciado superior e inferior */
+  background-color: #28a745; /* Color verde */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* Espaciado interno más grande */
+  cursor: pointer;
+  font-size: 16px; /* Tamaño de la fuente */
+  transition: background-color 0.3s;
+}
+
+/* Estilo al pasar el mouse sobre el botón "Añadir Producto" */
+.productButton:hover {
+  background-color: #086e80; /* Color verde más oscuro */
+}
+h1{
+  text-align: center;
+}
+.tableContainer {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin: 20px 0; 
 }

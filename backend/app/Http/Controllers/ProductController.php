@@ -46,6 +46,46 @@ class ProductController extends Controller
     return response()->json($product);
 }
 
+public function edit(Request $request, $id){try {
+   
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'count' => 'required|integer',
+        'price' => 'required|numeric',
+        'description' => 'required|string',
+        'image' => 'sometimes|string' 
+    ]);
+    
+    $objectId = new \MongoDB\BSON\ObjectId($id);
+
+    $updatedData = [
+        'name' => $request->input('name'),
+        'count' => (int) $request->input('count'),
+        'price' => (float) $request->input('price'),
+        'description' => $request->input('description'),
+    ];
+
+    if ($request->has('image')) {
+        $updatedData['image'] = $request->input('image');
+    }
+
+    $updateResult = $this->collection->updateOne(
+        ['_id' => $objectId],  // Filtro
+        ['$set' => $updatedData] // Datos a actualizar
+    );
+
+    if ($updateResult->getModifiedCount() > 0) {
+        return response()->json(['message' => 'Producto actualizado con éxito.']);
+    } else {
+        return response()->json(['message' => 'No se realizaron cambios en el producto.'], 200);
+    }
+} catch (\MongoDB\Driver\Exception\Exception $e) {
+    return response()->json(['message' => 'Error en el servidor.', 'error' => $e->getMessage()], 500);
+} catch (\Exception $e) {
+    return response()->json(['message' => 'Error al procesar la solicitud.', 'error' => $e->getMessage()], 500);
+}
+}
+
   public function upload(Request $request)
 {
     $request->validate([
