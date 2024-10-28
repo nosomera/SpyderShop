@@ -8,6 +8,8 @@ import './App.css'
 import Items from './components/Items';
 import ListProducts from './components/ListProducts';
 import EditProduct from './components/EditProduct';
+import CarShop from './components/CarShop';
+import { CartProvider } from './components/CarContext';
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
+    <CartProvider>
+
     <Router>
         
         <div>
@@ -29,6 +33,9 @@ function App() {
                 <li>
                   <Link to="/product/lista">Ver productos</Link>
                 </li>
+                <li>
+                <Link to="/carshop">Carrito de compras</Link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -39,10 +46,12 @@ function App() {
           <Route path="/product/:id" element={<Items />} />
           <Route path="/product/lista" element={<ListProducts />} />
           <Route path="/edit-product/:id" element={<EditProduct />} />
+          <Route path="/carshop" element={<CarShop />} />
         </Routes>
         <FooterComponetn />
       </div>
     </Router>
+    </CartProvider>
   );
 };
 

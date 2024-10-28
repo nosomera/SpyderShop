@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // Importa useParams
+import { useParams, useNavigate } from "react-router-dom";
 import '../Styles/ItemStyle.css'
 import axios from "axios";
+import {useCart} from '../components/CarContext';
 
 const Items = () => {
     const { id } = useParams(); // Obtiene el ID del producto de la URL
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
-    
+    const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCart();
+    const navigate = useNavigate(); 
+
     useEffect(() => {
         // Función para obtener los detalles del producto
         const fetchProduct = async () => {
@@ -19,9 +23,15 @@ const Items = () => {
                 setError("Error al obtener los detalles del producto.");
             }
         };
+    
 
         fetchProduct();
     }, [id]); // Se ejecuta cada vez que cambia el ID
+
+    const handleAddToCart = () => {
+        addToCart(product, quantity); // Agrega el producto al carrito
+        navigate("/carshop");
+    };
 
     if (error) {
         return <p style={{ color: 'red' }}>{error}</p>;
@@ -43,7 +53,7 @@ const Items = () => {
                         <label>Cantidad</label>
                         <input type="number" defaultValue={1} min={1} />
                     </div>
-                    <button>Añadir al carrito</button>
+                    <button onClick={handleAddToCart}>Añadir al carrito</button>
                 </div>
             </div>
         </div>
