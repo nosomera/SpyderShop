@@ -32,6 +32,7 @@ form {
     margin-bottom: 5px;
   }
   
+  form input[type="password"],
   form input[type="text"],
   form input[type="number"],
   form input[type="file"] {
@@ -61,7 +62,9 @@ form {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
   }
   
   form button:hover {
@@ -75,3 +78,32 @@ form {
     font-size: 14px;
   }
   
+  .labelU{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 16px;
+  }
+
+  a {
+    color: #3498db; /* Color inicial del enlace */
+    text-decoration: none; /* Quita el subrayado por defecto */
+    font-weight: bold; /* Negrita para destacar */
+    padding: 8px 16px; /* Espaciado interno para mayor tamaño del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    cursor: pointer;
+}
+
+a:hover {
+    color: #fff; /* Color de texto al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+a:active {
+    transform: scale(0.98); /* Efecto de clic para reducir ligeramente */
+}
+
+a:focus {
+    outline: 2px solid #2980b9; /* Resalta el enlace en foco */
+}

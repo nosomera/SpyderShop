@@ -10,6 +10,8 @@ import ListProducts from './components/ListProducts';
 import EditProduct from './components/EditProduct';
 import CarShop from './components/CarShop';
 import { CartProvider } from './components/CarContext';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
 
@@ -25,7 +27,9 @@ function App() {
         <header>
           <div className={styles.container}>
             <nav>
+              
               <img src={`http://localhost:8000/storage/images/Designer.jpeg`} style={{ width: "200px", height: "auto" , borderRadius:"200px"}} alt='No ha cargado el logo' className='logo'/>
+              
               <ul>
                 <li className="desplegable">
                   <Link to="/">Lista de Productos</Link>
@@ -35,6 +39,9 @@ function App() {
                 </li>
                 <li>
                 <Link to="/carshop">Carrito de compras</Link>
+                </li>
+                <li>
+                <Link to="/login">Login</Link>
                 </li>
               </ul>
             </nav>
@@ -47,6 +54,8 @@ function App() {
           <Route path="/product/lista" element={<ListProducts />} />
           <Route path="/edit-product/:id" element={<EditProduct />} />
           <Route path="/carshop" element={<CarShop />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         <FooterComponetn />
       </div>

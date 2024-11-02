@@ -4,7 +4,7 @@ const FooterComponetn = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <p>© 2024 SpyderShop</p>
+        <p>© 2024 SpyderShop: "Productos Tejidos"</p>
         <div className="footer-links">
           <a href="#">About</a>
           <a href="#">Privacy Policy</a>

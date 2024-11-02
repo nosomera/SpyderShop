@@ -18,6 +18,7 @@ class ProductController extends Controller
  $products = $this->collection->find()->toArray();
  return response()->json($products);
  }
+ 
   public function store(Request $request)
 {
     $request->validate([
@@ -92,13 +93,14 @@ public function edit(Request $request, $id){try {
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp', // Validación de la imagen
     ]);
 
-    if ($request->file('image')) {
-        $path = $request->file('image')->store('images', 'public'); // Guarda la imagen en el directorio public/images
-        return response()->json(['path' => $path], 200); // Retorna la ruta de la imagen guardada
-    }
+        if ($request->file('image')) {
+            $path = $request->file('image')->store('images', 'public'); // Guarda la imagen en el directorio public/images
+            return response()->json(['path' => $path], 200); // Retorna la ruta de la imagen guardada
+        }
 
-    return response()->json(['message' => 'Error al subir la imagen.'], 500);
+        return response()->json(['message' => 'Error al subir la imagen.'], 500);
 }
+
 public function show($id)
 {
     try {

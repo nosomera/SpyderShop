@@ -64,7 +64,7 @@ const ListProducts = () => {
                 <td>{product.name}</td>
                 <td>{product.count}</td>
                 <td>{product.price}</td>
-                <td>{product.description}</td>
+                <td>{product.description}</td>  
                 <td>
                   <button
                     onClick={() => editProduct(product._id)}

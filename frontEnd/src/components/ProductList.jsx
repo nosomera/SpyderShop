@@ -19,8 +19,6 @@ const ProductList = () => {
     console.log("Product ID:", stringId); // Verifica el ID convertido
     navigate(`/product/${stringId}`); // Redirige a la página del producto usando su ID como string
 };
-
-
   return (
     <div>
       <div className={styles.productList}>
@@ -28,13 +26,15 @@ const ProductList = () => {
           {products.map((product, index) => (
             <li key={index}>
               <h2>{product.name}</h2>
-              <p>Descripción: {product.description}</p>
+              
               <p>Precio: ${product.price}</p>
+
               <img
                 src={`http://localhost:8000/storage/${product.image}`}
                 alt={product.name}
                 style={{ width: "200px", height: "auto" }}
               />
+              
               <div>
                 <button
                   onClick={() => handleViewProduct(product._id)} 
