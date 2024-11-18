@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../Styles/ProductForm.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
   const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [rol, setRol] = useState("cliente");
+  const [role, setRole] = useState("viewer");
 
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -19,54 +19,55 @@ const Register = () => {
     navigate("/login");
   };
 
-  
-  const registeractiob = async (e) => {
+  const registerAction = async (e) => {
     e.preventDefault();
-    
+
+    // Verificar si las contraseñas coinciden
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden");
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/api/users",{
+      const response = await axios.post("http://localhost:8000/api/register", {
         name,
-        address,
+        email,  // Asegúrate de enviar 'email' en lugar de 'address'
         password,
-        rol,
-
+        password_confirmation: confirmPassword, 
+        role,
       });
-      if (response.status==201){
+
+      if (response.status === 201) {
         setSuccess("Registro exitoso");
         navigate("/login");
       }
-     
     } catch (error) {
-      console.log("ERROR en el registro",error);
-      setError("Hubo un problema con el registro")
+      console.log("ERROR en el registro", error);
+      setError("Hubo un problema con el registro");
     }
   };
 
   return (
     <div id="contenedor">
-      <form onSubmit={registeractiob}>
+      <form onSubmit={registerAction}>
         <h2>Registro</h2>
         {error && <p style={{ color: "red" }}>{error}</p>}
         {success && <p style={{ color: "green" }}>{success}</p>}
+        
         <div>
-          <label htmlFor="address" className="labelU">
+          <label htmlFor="email" className="labelU">
             <strong>Ingresa tu correo</strong>
           </label>
           <input
             placeholder="correo@hotmail.com"
             type="text"
-            id="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
-          ></input>
+          />
 
-          <label htmlFor="address" className="labelU">
+          <label htmlFor="name" className="labelU">
             <strong>Ingresa tu nombre</strong>
           </label>
           <input
@@ -90,8 +91,8 @@ const Register = () => {
             required
           />
 
-          <label htmlFor="passwor-confirm" className="labelU">
-            <strong>Confrima tu Contraseña</strong>
+          <label htmlFor="confirm-password" className="labelU">
+            <strong>Confirma tu Contraseña</strong>
           </label>
           <input
             placeholder="Confirmar contraseña"
@@ -104,9 +105,10 @@ const Register = () => {
 
           <button type="submit">Registrarse</button>
         </div>
-        <a onClick={() => movelogin()}>Iniciar Sesion</a>
+        <a onClick={() => movelogin()}>Iniciar Sesión</a>
       </form>
     </div>
   );
 };
+
 export default Register;

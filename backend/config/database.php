@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => 'mongodb',
 
     /*
     |--------------------------------------------------------------------------
@@ -49,9 +49,9 @@ return [
              'database' => env('DB_DATABASE'),
              'username' => env('DB_USERNAME'),
              'password' => env('DB_PASSWORD'),
-             'options' => [
-             'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'),
-              ],
+             'options'  => [
+            'database' => env('MONGO_DB_DATABASE') // Nombre de la base de datos para la autenticación
+        ],
         ],
 
         'mysql' => [

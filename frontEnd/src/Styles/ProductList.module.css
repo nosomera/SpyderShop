@@ -58,7 +58,7 @@ ul li a {
   margin-bottom: 20px;
 }
 
-ul li a:hover {
+ul li a:hover .stiloscolor {
   color: rgb(104, 211, 33); /* Color del enlace al pasar el mouse */
   filter: drop-shadow(0 10px 55px rgba(28, 39, 238, 2)); 
   text-shadow: 0 10px 55px rgba(28, 39, 238, 2); /* Agrega una sombra al texto para mejor efecto */

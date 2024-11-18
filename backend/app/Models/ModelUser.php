@@ -1,30 +1,25 @@
 <?php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use MongoDB\Laravel\Auth\User as Authenticatable;
+ //use MongoDB\Laravel\Eloquent\Model as Eloquent;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
-class ModelUser extends Model
+class ModelUser extends Authenticatable
 {
-    use HasApiTokens;
+    
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $connection = 'mongodb'; // Asegúrate de usar la conexión correcta
-    protected $collection = 'users'; // Asegúrate de que esto sea correcto
+    protected $connection = 'mongodb';
+   protected $collection = 'model_users'; 
 
-    protected $fillable = [
-        'name',
-        'address',
-        'password',
-        'rol',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
-    protected $hidden = [
-        'password',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
+
 }

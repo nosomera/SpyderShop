@@ -11,7 +11,7 @@ class ProductController extends Controller
      public function __construct()
    {
   $client = new Client(env('DB_CONNECTION_URL')); 
-  $this->collection = $client->Store->products;
+  $this->collection = $client->spyderShop->products;
   }
   public function index()
  {
