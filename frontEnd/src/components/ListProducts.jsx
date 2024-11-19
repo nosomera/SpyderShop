@@ -55,7 +55,7 @@ const ListProducts = () => {
 
            
             {products.map((product, index) => (
-              <tr>
+              <tr  key={product._id.$oid}>
                 <td><img
                 src={`http://localhost:8000/storage/${product.image}`}
                 alt={product.name}

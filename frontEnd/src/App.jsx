@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import axios from "axios";
 import ProductList from "./components/ProductList";
 import ProductForm from "./components/ProductForm";
@@ -13,26 +19,31 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import "./App.css";
 import styles from "./Styles/ProductList.module.css";
+import FormShop from "./components/FormShop";
+import PrivateRoute from "./components/PrivateRoute ";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null);
-  
+
   // Recuperar token y rol al cargar la app
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
+
     if (token) {
-      setIsAuthenticated(false);
+      setIsAuthenticated(true);
       setUserRole(role);
+    } else {
+      setIsAuthenticated(false);
+      setUserRole(null);
     }
   }, []);
 
   // Cerrar sesión
   const handleLogout = async () => {
-    const token = localStorage.getItem("token");
-
     try {
+      const token = localStorage.getItem("token");
       await axios.post(
         "http://localhost:8000/api/logout",
         {},
@@ -42,15 +53,13 @@ function App() {
           },
         }
       );
-      // Limpiar datos locales y estado
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    } finally {
       localStorage.removeItem("token");
       localStorage.removeItem("role");
       setIsAuthenticated(false);
       setUserRole(null);
-  
-    } catch (error) {
-      console.error("Error al cerrar sesión:", error);
-      alert("Hubo un problema al cerrar sesión. Inténtalo nuevamente.");
     }
   };
 
@@ -75,7 +84,7 @@ function App() {
                   <li className="desplegable">
                     <Link to="/">Lista de Productos</Link>
                   </li>
-                  {userRole === "admin" && (
+                  {isAuthenticated && userRole === "admin" && (
                     <li>
                       <Link to="/product/lista">Ver productos</Link>
                     </li>
@@ -85,13 +94,9 @@ function App() {
                   </li>
                   <li>
                     {isAuthenticated ? (
-                      <button
-                        className="stiloscolor"
-                        onClick={handleLogout}
-                        style={{ cursor: "pointer" }}
-                      >
-                        Logout
-                      </button>
+                      <li onClick={handleLogout} style={{ cursor: "pointer" }}>
+                        <Link to="/">Logout</Link>
+                      </li>
                     ) : (
                       <Link to="/login">Login</Link>
                     )}
@@ -102,17 +107,65 @@ function App() {
           </header>
           <Routes>
             <Route path="/" element={<ProductList />} />
-            <Route path="/add-product" element={<ProductForm />} />
+
+            <Route
+              path="/add-product"
+              element={
+                <PrivateRoute
+                  isAuthenticated={isAuthenticated}
+                  allowedRoles={["admin"]}
+                  userRole={userRole}
+                >
+                  <ProductForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/edit-product/:id"
+              element={
+                <PrivateRoute
+                  isAuthenticated={isAuthenticated}
+                  allowedRoles={["admin"]}
+                  userRole={userRole}
+                >
+                  <EditProduct />
+                </PrivateRoute>
+              }
+            />
+
             <Route path="/product/:id" element={<Items />} />
-            <Route path="/product/lista" element={<ListProducts />} />
+
+            <Route
+              path="/product/lista"
+              element={
+                <PrivateRoute
+                  isAuthenticated={isAuthenticated}
+                  allowedRoles={["admin"]}
+                  userRole={userRole}
+                >
+                  <ListProducts />
+                </PrivateRoute>
+              }
+            />
+
             <Route path="/edit-product/:id" element={<EditProduct />} />
-            <Route path="/carshop" element={<CarShop />} />
+            <Route
+              path="/carshop"
+              element={<CarShop isAuthenticated={isAuthenticated} />}
+            />
+            <Route path="/formulario-compra" element={<FormShop />} />
             <Route
               path="/login"
-              element={<Login setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} />}
+              element={
+                <Login
+                  setIsAuthenticated={setIsAuthenticated}
+                  setUserRole={setUserRole}
+                />
+              }
             />
             <Route path="/register" element={<Register />} />
           </Routes>
+
           <FooterComponetn />
         </div>
       </Router>

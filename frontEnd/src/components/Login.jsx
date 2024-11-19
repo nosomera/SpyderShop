@@ -22,6 +22,8 @@ const Login = ({ setIsAuthenticated, setUserRole }) => {
         // Guardar token y rol en localStorage
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("role", response.data.role);
+        localStorage.setItem("userId", response.data.userId);
+       
 
         // Actualizar estados globales
         setIsAuthenticated(true);

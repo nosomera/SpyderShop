@@ -13,8 +13,6 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     protected $collection;
-
-
     public function __construct()
     {
         $client = new Client(env('DB_CONNECTION_URL'));
@@ -55,7 +53,10 @@ class UserController extends Controller
      );
  
      // Devolver el token al cliente
-     return response()->json(['message' => 'Inicio de sesión exitoso', 'token' => $token,'role' => $user['role']], 200);
+     return response()->json(['message' => 'Inicio de sesión exitoso',
+      'token' => $token,
+      'user_id' => (string) $user['_id'],
+      'role' => $user['role']], 200);
  }
 
  public function validateToken(Request $request)
