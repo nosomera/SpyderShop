@@ -22,6 +22,17 @@ const CarShop = ({ isAuthenticated }) => {
     navigate("/formulario-compra");
   };
 
+    
+const formatCurrency = (value) => {
+  if (!value) return "";
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    minimumFractionDigits: 0
+  }).format(value);
+};
+
+
   return (
     <div>
       <h1>Carrito de compras</h1>
@@ -45,8 +56,8 @@ const CarShop = ({ isAuthenticated }) => {
                 <tr key={index}>
                   <td>{item.product.name}</td>
                   <td>{item.quantity}</td>
-                  <td>${item.product.price.toFixed(2)}</td>
-                  <td>${(item.product.price * item.quantity).toFixed(2)}</td>
+                  <td>{formatCurrency(item.product.price.toFixed(2))}</td>
+                  <td>${(item.product.price * item.quantity).toFixed(0)}</td>
                 </tr>
               ))
             )}
@@ -54,7 +65,9 @@ const CarShop = ({ isAuthenticated }) => {
               <td colSpan="3">
                 <strong>Total:</strong>
               </td>
-              <td>${getTotal().toFixed(2)}</td>
+
+              <td>{formatCurrency(getTotal().toFixed(2))}</td>
+            
             </tr>
           </tbody>
           <tfoot>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 
 use MongoDB\Client;
 use Illuminate\Http\Request;
@@ -14,6 +15,12 @@ class OrdenesController extends Controller
         $client = new Client(env('DB_CONNECTION_URL')); 
         $this->collection = $client->spyderShop->ordenes;
     }
+
+    public function index()
+ {
+ $ordenes = $this->collection->find()->toArray();
+ return response()->json($ordenes);
+ }
 
     public function createOrder(Request $request)
     {
@@ -32,11 +39,34 @@ class OrdenesController extends Controller
             'cart' => $validated['cart'],
             'total' => $validated['total'],
             'status' => 'Aprobada',
-            'created_at' => now(),
+            'created_at' => Carbon::now('America/Bogota')->toDateTimeString(),
+
         ];
 
-        $this->collection->insertOne($order);
-
-        return response()->json(['message' => 'Compra Aprobada', 'order' => $order], 201);
+        try {
+            $this->collection->insertOne($order);
+            return response()->json(['message' => 'Compra Aprobada', 'order' => $order], 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'No se pudo guardar la orden', 'message' => $e->getMessage()], 500);
+        }
     }
+
+    public function showOrden ($id){
+        try {
+           
+            $ordenes = $this->collection->find(['user_id' => $id])->toArray();
+            
+       
+            if (empty($ordenes)) {
+                return response()->json(['message' => 'No se encontraron órdenes para este usuario.'], 404);
+            }
+    
+            // Devuelve las órdenes encontradas
+            return response()->json($ordenes);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al obtener las órdenes', 'message' => $e->getMessage()], 500);
+        }
+
+    }
+    
 }

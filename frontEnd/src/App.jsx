@@ -21,6 +21,8 @@ import "./App.css";
 import styles from "./Styles/ProductList.module.css";
 import FormShop from "./components/FormShop";
 import PrivateRoute from "./components/PrivateRoute ";
+import OrdenList from "./components/OrdenList";
+import MyOrden from "./components/MyOrden";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -92,6 +94,17 @@ function App() {
                   <li>
                     <Link to="/carshop">Carrito de compras</Link>
                   </li>
+                  {isAuthenticated && userRole === "admin" && (
+                    <li>
+                      <Link to="/ordenes">Ver Ordenes</Link>
+                    </li>
+                  )}
+                  {isAuthenticated  && (
+                    <li>
+                      <Link to="/myorden">Ver mis Ordenes</Link>
+                    </li>
+                  )}
+                  
                   <li>
                     {isAuthenticated ? (
                       <li onClick={handleLogout} style={{ cursor: "pointer" }}>
@@ -106,6 +119,7 @@ function App() {
             </div>
           </header>
           <Routes>
+
             <Route path="/" element={<ProductList />} />
 
             <Route
@@ -120,6 +134,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+            
             <Route
               path="/edit-product/:id"
               element={
@@ -133,7 +148,13 @@ function App() {
               }
             />
 
+
+
+            <Route path="/myorden" element={<MyOrden />} />
+
             <Route path="/product/:id" element={<Items />} />
+
+            <Route path="/ordenes" element={<OrdenList />} />
 
             <Route
               path="/product/lista"

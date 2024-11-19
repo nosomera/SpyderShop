@@ -42,6 +42,16 @@ const Items = () => {
     return <p>Cargando...</p>;
   }
 
+  
+const formatCurrency = (value) => {
+  if (!value) return "";
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    minimumFractionDigits: 0
+  }).format(value);
+};
+
   return (
     <div id="container">
       <div id="grid">
@@ -53,7 +63,7 @@ const Items = () => {
         <div id="derecha">
           <h2>{product.name}</h2>
           <div id="details">
-            <h3>Precio: ${product.price}</h3>
+          <h3>Precio: {formatCurrency(product.price)}</h3>
             <p>Descripción: {product.description}</p>
             <label>Cantidad</label>
             <input

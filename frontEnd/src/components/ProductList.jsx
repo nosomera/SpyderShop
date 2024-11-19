@@ -19,6 +19,16 @@ const ProductList = () => {
     console.log("Product ID:", stringId); // Verifica el ID convertido
     navigate(`/product/${stringId}`); // Redirige a la página del producto usando su ID como string
 };
+
+const formatCurrency = (value) => {
+  if (!value) return "";
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    minimumFractionDigits: 0
+  }).format(value);
+};
+
   return (
     <div>
       <div className={styles.productList}>
@@ -27,12 +37,13 @@ const ProductList = () => {
             <li key={index}>
               <h2>{product.name}</h2>
               
-              <p>Precio: ${product.price}</p>
+           
+              <p>Precio: {formatCurrency(product.price)}</p>
 
               <img
                 src={`http://localhost:8000/storage/${product.image}`}
                 alt={product.name}
-                style={{ width: "200px", height: "auto" }}
+                style={{ width: "200px", height: "300px"}}
               />
               
               <div>

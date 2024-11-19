@@ -25,6 +25,10 @@ Route::post('/login', [UserController::class, 'login']);
 
 //Rutas de Ordenes
 Route::post('/orders', [OrdenesController::class, 'createOrder']);
+Route::get('/ordenes', [OrdenesController::class, 'index']);
+Route::get('/ordenes/{id}', [OrdenesController::class, 'showOrden']);
+
+
 
 // Ruta de prueba
 Route::get('/test', function () {

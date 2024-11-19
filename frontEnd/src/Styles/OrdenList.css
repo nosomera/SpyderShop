@@ -1,0 +1,86 @@
+/* Contenedor principal de la lista de órdenes */
+.orden-list-container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #3b3b3b;
+    border-radius: 8px;
+    box-shadow: 20px 20px 30px rgba(67, 117, 224, 0.1);
+  }
+  
+  .orden-list-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
+  .orden-item {
+    background-color: 3b3b3b;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orden-item p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #ffffff;
+  }
+  
+  /* Títulos de cada sección dentro de la orden */
+  .orden-item strong {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  /* Estilo para la lista de productos del carrito */
+  .cart-list {
+    border-color: white;
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  
+  .cart-list li {
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  
+  .cart-list li span {
+    font-weight: bold;
+  }
+  
+  /* Botón de acción (opcional) */
+  .orden-action-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .orden-action-button:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+  }
+  
+  /* Mensaje de error o carga */
+  .message {
+    font-size: 1rem;
+    text-align: center;
+    color: #d9534f; /* rojo para error */
+  }
+  
+  .loading-message {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #5bc0de; /* azul claro para carga */
+  }
+  
